@@ -5,7 +5,7 @@ dark_mode: 'no'
 static_data: ''
 polling_verb: get
 framework_version: 3.0.3
-serverless_language: 
+serverless_language: ''
 polling_url: https://groandeck.com/api/v1/random
 polling_headers: ''
 polling_body: ''
@@ -14,7 +14,10 @@ custom_fields:
 - keyname: author_bio
   field_type: author_bio
   name: About This Plugin
-  description: Dad Jokes courtesy of <a href="https://groandeck.com">groandeck.com</a>
+  description: |-
+    Dad Jokes courtesy of <a href="https://groandeck.com">groandeck.com</a><br /><br />From the groandeck site:<br /> <strong>The best dad jokes on the internet.</strong><br />
+    So bad, they're good.<br />
+    2,157+ clean, funny puns and one-liners.<br />A fresh dad joke every day.<br />No sign-up required.
   category: humor
   learn_more_url: groandeck.com
   github_url: https://github.com/ExcuseMi/trmnl-dad-jokes-by-groandeck-plugin
