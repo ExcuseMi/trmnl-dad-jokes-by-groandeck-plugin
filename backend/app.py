@@ -1,12 +1,15 @@
 import asyncio
+import logging
 import os
 import time
 
 import aiohttp
 from quart import Quart, jsonify, abort
+from modules.db import init_db, save_jokes, get_random_jokes
 from modules.utils.ip_whitelist import init_ip_whitelist, require_trmnl_ip
 
 app = Quart(__name__)
+log = logging.getLogger(__name__)
 
 GROANDECK_API_URL = "https://groandeck.com/api/v1/random"
 API_KEY = os.environ.get("GROANDECK_API_KEY")
@@ -22,6 +25,7 @@ async def startup():
     global _session, _cache_lock
     _session = aiohttp.ClientSession()
     _cache_lock = asyncio.Lock()
+    await asyncio.to_thread(init_db)
     init_ip_whitelist()
 
 
@@ -50,7 +54,15 @@ async def _get_jokes():
         if _cache["minute"] == current_minute:
             return _cache["jokes"]
 
-        jokes = list(await asyncio.gather(*[_fetch_one() for _ in range(JOKE_COUNT)]))
+        try:
+            jokes = list(await asyncio.gather(*[_fetch_one() for _ in range(JOKE_COUNT)]))
+            await asyncio.to_thread(save_jokes, jokes)
+        except Exception as e:
+            log.warning('GroanDeck API unavailable (%s), falling back to SQLite cache', e)
+            jokes = await asyncio.to_thread(get_random_jokes, JOKE_COUNT)
+            if not jokes:
+                raise
+
         _cache["jokes"] = jokes
         _cache["minute"] = current_minute
 
