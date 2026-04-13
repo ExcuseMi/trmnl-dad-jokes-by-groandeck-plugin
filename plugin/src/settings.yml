@@ -5,7 +5,7 @@ dark_mode: 'no'
 static_data: ''
 polling_verb: get
 framework_version: 3.0.3
-serverless_language: ''
+serverless_language: 
 polling_url: https://groandeck.com/api/v1/random
 polling_headers: ''
 polling_body: ''
@@ -14,14 +14,14 @@ custom_fields:
 - keyname: author_bio
   field_type: author_bio
   name: About This Plugin
-  description: Dad Jokes courtesy of <a href="groandeck.com">groandeck.com</a>
+  description: Dad Jokes courtesy of <a href="https://groandeck.com">groandeck.com</a>
   category: humor
   learn_more_url: groandeck.com
   github_url: https://github.com/ExcuseMi/trmnl-dad-jokes-by-groandeck-plugin
 - keyname: show_explanation
   field_type: boolean
   name: Show Explanation
-  description: Show explanation
+  description: Show the explanation of the joke under the punchline.
   default: 'false'
   optional: true
 name: Dad Jokes by Groandeck.com
