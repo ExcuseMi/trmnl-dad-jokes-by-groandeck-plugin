@@ -20,7 +20,7 @@
   var views = Array.from(document.querySelectorAll('.view'));
   var script = document.currentScript;
   var ancestor = views.find(function (v) { return v.contains(script); });
-  var idx = Math.min(views.indexOf(ancestor), 3);
+  var idx = views.indexOf(ancestor) % 4;
   var joke = (__jokes || [])[idx] || {};
   var setup = ancestor.querySelector('.joke-setup');
   var punchline = ancestor.querySelector('.joke-punchline');
