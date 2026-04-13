@@ -1,0 +1,11 @@
+{% template main %}
+<div class="layout layout--col">
+  <div class="value {% if view == 4%}md:value--small lg:value--base{% else %}lg:value--large{% endif %} text--center mb--4 lg:mb--4">{{ setup }}</div>
+  <div class="value {% if view == 4%}md:value--small lg:value--base{% else %}lg:value--large{% endif %} text--center">{{ punchline }}</div>
+  {% if trmnl.plugin_settings.custom_fields_values.show_explanation == "true" %}<div class="description 2bit:text--gray-40 4bit:text--gray-40">{{explanation}}</div>{% endif %}
+</div>
+<div class="title_bar">
+  <span class="title">Dad Jokes</span>
+  <span class="instance">Courtesy of groandeck.com</span>
+</div>
+{% endtemplate %}

@@ -1,0 +1,27 @@
+---
+strategy: polling
+no_screen_padding: 'no'
+dark_mode: 'no'
+static_data: ''
+polling_verb: get
+framework_version: 3.0.3
+serverless_language: 
+polling_url: https://groandeck.com/api/v1/random
+polling_headers: ''
+polling_body: ''
+id: 285134
+custom_fields:
+- keyname: author_bio
+  field_type: author_bio
+  name: About This Plugin
+  description: Dad Jokes courtesy of <a href="groandeck.com">groandeck.com</a>
+  category: humor
+  learn_more_url: groandeck.com
+- keyname: show_explanation
+  field_type: boolean
+  name: Boolean
+  description: Show explanation
+  default: 'false'
+  optional: true
+name: Dad Jokes by Groandeck
+refresh_interval: 15
