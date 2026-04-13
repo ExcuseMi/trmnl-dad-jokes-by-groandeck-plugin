@@ -27,5 +27,5 @@ custom_fields:
   description: Show the explanation of the joke under the punchline.
   default: 'false'
   optional: true
-name: Dad Jokes by Groandeck.com
+name: Dad Jokes by GroanDeck.com
 refresh_interval: 15

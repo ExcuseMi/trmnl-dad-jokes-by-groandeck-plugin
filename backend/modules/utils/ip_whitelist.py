@@ -1,7 +1,11 @@
-import logging, os, threading, time
+import logging
+import os
+import threading
+import time
 from functools import wraps
-import requests
-from flask import jsonify, request
+
+import aiohttp
+from quart import jsonify, request
 
 TRMNL_IPS_API = 'https://trmnl.com/api/ips'
 ENABLE_IP_WHITELIST = os.getenv('ENABLE_IP_WHITELIST', 'true').lower() == 'true'
@@ -14,8 +18,9 @@ _lock = threading.Lock()
 
 
 def _fetch_ips() -> set[str]:
+    import requests as _requests
     try:
-        resp = requests.get(TRMNL_IPS_API, timeout=10)
+        resp = _requests.get(TRMNL_IPS_API, timeout=10)
         resp.raise_for_status()
         data = resp.json().get('data', {})
         ips = set(data.get('ipv4', []) + data.get('ipv6', [])) | LOCALHOST_IPS
@@ -59,14 +64,14 @@ def _client_ip() -> str:
 
 def require_trmnl_ip(f):
     @wraps(f)
-    def decorated(*args, **kwargs):
+    async def decorated(*args, **kwargs):
         if not ENABLE_IP_WHITELIST:
-            return f(*args, **kwargs)
+            return await f(*args, **kwargs)
         ip = _client_ip()
         with _lock:
             allowed = ip in _ips
         if not allowed:
             log.warning('Blocked request from %s', ip)
             return jsonify({'error': 'forbidden'}), 403
-        return f(*args, **kwargs)
+        return await f(*args, **kwargs)
     return decorated

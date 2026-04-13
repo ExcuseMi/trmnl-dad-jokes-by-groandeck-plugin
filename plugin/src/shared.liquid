@@ -1,14 +1,34 @@
 {% template main %}
 
+<script>var __jokes = {{ jokes | json }};</script>
+
 <div class="layout layout--col">
-  <div class
-="value {% if view == 4%}md:value--small lg:value--base{% else %}lg:value--large{% endif %} text--center mb--4 lg:mb--4">{{ setup }}</div>
-  <div class="value {% if view == 4%}md:value--small lg:value--base{% else %}lg:value--large{% endif %} text--center">{{ punchline }}</div>
-  {% if trmnl.plugin_settings.custom_fields_values.show_explanation == "true" %}<div class="description 2bit:text--gray-40 4bit:text--gray-40">{{explanation}}</div>{% endif %}
+  <div class="joke-setup value {% if view == 4 %}md:value--small lg:value--base{% else %}lg:value--large{% endif %} text--center mb--4 lg:mb--4"></div>
+  <div class="joke-punchline value {% if view == 4 %}md:value--small lg:value--base{% else %}lg:value--large{% endif %} text--center"></div>
+  {% if trmnl.plugin_settings.custom_fields_values.show_explanation == "true" %}
+  <div class="joke-explanation description 2bit:text--gray-40 4bit:text--gray-40"></div>
+  {% endif %}
 </div>
 <div class="title_bar">
   <img class="w--8 h--8 image image-dither" src="https://raw.githubusercontent.com/ExcuseMi/trmnl-dad-jokes-by-groandeck-plugin/refs/heads/main/assets/logo.png" />
   <span class="title">Dad Jokes</span>
-  {% if view <= 2 %}<span class="instance">Courtesy of groandeck.com</span>{% endif %}
+  {% if view <= 2 %}<span class="instance">Courtesy of GroanDeck</span>{% endif %}
 </div>
+
+<script>
+(function () {
+  var views = Array.from(document.querySelectorAll('.view'));
+  var script = document.currentScript;
+  var ancestor = views.find(function (v) { return v.contains(script); });
+  var idx = Math.min(views.indexOf(ancestor), 3);
+  var joke = (__jokes || [])[idx] || {};
+  var setup = ancestor.querySelector('.joke-setup');
+  var punchline = ancestor.querySelector('.joke-punchline');
+  var explanation = ancestor.querySelector('.joke-explanation');
+  if (setup) setup.textContent = joke.setup || '';
+  if (punchline) punchline.textContent = joke.punchline || '';
+  if (explanation) explanation.textContent = joke.explanation || '';
+})();
+</script>
+
 {% endtemplate %}
