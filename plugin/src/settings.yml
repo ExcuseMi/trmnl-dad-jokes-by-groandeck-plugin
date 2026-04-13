@@ -20,9 +20,9 @@ custom_fields:
   github_url: https://github.com/ExcuseMi/trmnl-dad-jokes-by-groandeck-plugin
 - keyname: show_explanation
   field_type: boolean
-  name: Boolean
+  name: Show Explanation
   description: Show explanation
   default: 'false'
   optional: true
-name: Dad Jokes by Groandeck
+name: Dad Jokes by Groandeck.com
 refresh_interval: 15
