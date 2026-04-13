@@ -1,0 +1,13 @@
+services:
+  backend:
+    build: ./backend
+    container_name: trmnl-dad-jokes-by-groandeck-backend
+    restart: unless-stopped
+    env_file: .env
+    ports:
+      - "${BACKEND_PORT:-8634}:8080"
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8080/health"]
+      interval: 30s
+      timeout: 5s
+      retries: 3

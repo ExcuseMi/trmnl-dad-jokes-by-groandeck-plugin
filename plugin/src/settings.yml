@@ -6,7 +6,7 @@ static_data: ''
 polling_verb: get
 framework_version: 3.0.3
 serverless_language: ''
-polling_url: https://groandeck.com/api/v1/random
+polling_url: https://trmnl.bettens.dev/groandeck
 polling_headers: ''
 polling_body: ''
 id: 285134
