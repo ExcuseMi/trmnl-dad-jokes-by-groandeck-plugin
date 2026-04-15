@@ -5,7 +5,7 @@ dark_mode: 'no'
 static_data: ''
 polling_verb: get
 framework_version: 2.3.7
-serverless_language: ''
+serverless_language: 
 polling_url: https://trmnl.bettens.dev/groandeck
 polling_headers: ''
 polling_body: ''
@@ -25,7 +25,7 @@ custom_fields:
   field_type: boolean
   name: Show Explanation
   description: Show the explanation of the joke under the punchline.
-  default: 'false'
+  default: 'true'
   optional: true
 name: Dad Jokes by GroanDeck.com
 refresh_interval: 15
