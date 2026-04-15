@@ -1,12 +1,12 @@
 {% template main %}
-
+{% assign show_explanation = trmnl.plugin_settings.custom_fields_values.show_explanation | default: "true" %}
 <script>var __jokes = {{ jokes | json }};</script>
 
 <div class="layout layout--col">
   <div class="joke-setup value {% if view == 4 %}md:value--small lg:value--base{% else %}lg:value--large{% endif %} text--center mb--4 lg:mb--4"></div>
   <div class="joke-punchline value {% if view == 4 %}md:value--small lg:value--base{% else %}lg:value--large{% endif %} text--center"></div>
-  {% if trmnl.plugin_settings.custom_fields_values.show_explanation == "true" %}
-  <div class="joke-explanation description 2bit:text--gray-40 4bit:text--gray-40"></div>
+  {% if show_explanation == "true" %}
+  <div class="joke-explanation description lg:description--large 2bit:text--gray-30 4bit:text--gray-40"></div>
   {% endif %}
 </div>
 <div class="title_bar">

@@ -4,8 +4,8 @@ no_screen_padding: 'no'
 dark_mode: 'no'
 static_data: ''
 polling_verb: get
-framework_version: 3.0.3
-serverless_language: ''
+framework_version: 2.3.7
+serverless_language: 
 polling_url: https://trmnl.bettens.dev/groandeck
 polling_headers: ''
 polling_body: ''
@@ -17,15 +17,16 @@ custom_fields:
   description: |-
     Dad Jokes courtesy of <a href="https://groandeck.com">GroanDeck.com</a><br /><br />
     <strong>The curated collection of dad jokes that make you groan, roll your eyes — and then reluctantly tell someone else.</strong><br /><br />
-    Every joke is clean, work-safe, and built on puns or wordplay. Quality over quantity: each one is reviewed before it goes live. If it doesn't produce a genuine groan, it doesn't make the cut.
+    Every joke is clean, work-safe, and built on puns or wordplay. Quality over quantity: each one is reviewed before it goes live. If it doesn't produce a genuine groan, it doesn't make the cut.<br /><br />
+    <strong>Fresh joke(s) every minute</strong> - 4 jokes are cached per refresh so your screen always shows something new without hammering the API. Works great in <strong>mashup mode</strong> too: add up to 4 instances on a single screen, each showing a different joke.
   category: humor
-  learn_more_url: groandeck.com
+  learn_more_url: https://groandeck.com
   github_url: https://github.com/ExcuseMi/trmnl-dad-jokes-by-groandeck-plugin
 - keyname: show_explanation
   field_type: boolean
   name: Show Explanation
   description: Show the explanation of the joke under the punchline.
-  default: 'false'
+  default: 'true'
   optional: true
 name: Dad Jokes by GroanDeck.com
 refresh_interval: 15
